@@ -12,13 +12,14 @@
         <button class="new">New to do 
             
         </button>
-        <button class="delete">Delete All</button>
+        <button class="deleteAll">Delete All</button>
 
-    <select name="" id="" class="sort">
+    <select name="" id="" class="sortProjects" >
 
-        <option value="" class="default">All Projects</option>
-        <option value="" class="default">Default</option>
-        <option value="" class="default">Default</option>
+        <option value="All Projects" class="allProjects" >All Projects</option>
+        <option value="Development" class="development">Development</option>
+        <option value="Design" class="design">Design</option>
+        <option value="Disk Jockey" class="diskJockey">Disk Jockey</option>
 
     </select>
 
@@ -38,15 +39,14 @@
 
             <label for="priority">Priority </label>
              
-                <select name="priority" class="priority">
+                <select name="priority" class="priority" id="priority">
 
-                    <option value="" class="default">High</option>
-                    <option value="" class="default">Mid</option>
-                    <option value="" class="default">Low</option>
+                    <option value="High" class="high">High</option>
+                    <option value="Mid" class="mid">Mid</option>
+                    <option value="Low" class="low">Low</option>
 
                 </select>
 
-           
 
             <label for="project">Project</label>
             <input type="text" class="project" name="project">
@@ -56,6 +56,10 @@
         </form>
 
     </dialog>
+
+    <container class="toDoDisplay">
+
+    </container>
 
 </body>
 </html>
