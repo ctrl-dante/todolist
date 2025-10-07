@@ -5,23 +5,9 @@ testLog();
 const body = document.body;
 
 
-const toDoListArray =(() => {
 
-    const toDoListArray = [];
 
-    const addToArray = (arrayItem) => {
-        toDoListArray.push(arrayItem);
-    };
-
-    //console.log(toDoListArray());
-
-    return {addToArray, toDoListArray,
-
-    }
-
-})();
-
-// to do object
+// toDo Object
 
 const toDoObject = class {
 
@@ -35,6 +21,8 @@ const toDoObject = class {
         this.priority = priority;
         this.project = project;
     }
+
+    //Not functional yet
 
     edit(title,description,dueDate,priority,project){
 
@@ -66,7 +54,36 @@ const toDoObject = class {
     }
 
 
-}
+};
+
+//add toDo item to array
+const toDoListArray =(() => {
+
+    const toDoListArray = [];
+
+    const addToArray = (arrayItem) => {
+        toDoListArray.push(arrayItem);
+        let id = crypto.randomUUID(); // add id
+        arrayItem.id = id;
+    };
+
+    //console.log(toDoListArray());
+
+    return {addToArray, toDoListArray,
+
+    }
+
+})();
+
+//To Delete From array and Dom
+
+ const deleteToDo = (toDoDivId, toDoId) => {
+
+    
+ };
+
+
+
 
 //const todo1 = new toDoObject("note","firstNote","tommorrow Hopefully","High","Personal");
 
@@ -81,6 +98,8 @@ const deleteBtn = document.querySelector(".deleteAll");
 deleteBtn.addEventListener('click', () => {
     const container = document.querySelector(".toDoDisplay")
     container.innerText = "";
+    toDoListArray.toDoListArray = [];
+    //console.log(toDoListArray.toDoListArray);
 })
 
 showBtn.addEventListener('click', () => {
@@ -96,11 +115,12 @@ closeBtn.addEventListener('click', () => {
 
 addBtn.addEventListener('click', () => {
 
-getToDo();
-displayToDo();
-toDoListArray.addToArray(getToDo());
+const newToDo = getToDo();
+
+toDoListArray.addToArray(newToDo);
 console.log(toDoListArray.toDoListArray);
 
+displayToDo(newToDo);
 
 });
 
@@ -162,29 +182,38 @@ const getToDo = () => {
         return editedToDo
     };
 
- const displayToDo = () => {
+ const displayToDo = (toDoToDisplay) => {
 
           const toDoElement = document.createElement("div");
           const toDoElementTitle = document.createElement("h2");
           const toDoElementDueDate = document.createElement("p");
+          
           const container = document.querySelector(".toDoDisplay");
           const deleteToDoBtn = document.createElement("button");
           const editToDoBtn = document.createElement("button");
+         
+          
 
           deleteToDoBtn.innerText = "Delete To Do";
           editToDoBtn.innerText = "Edit To Do";
 
 
-          const toDo = getToDo();
+          const toDo = toDoToDisplay;
+
+          toDoElement.setAttribute("data-id",`${toDo.id}`);
 
           toDoElementTitle.innerText = `${toDo.title}`;
-          //console.log(toDo.date.value);
-          toDoElementDueDate.innerText =  toDo.dueDate;
+          toDoElementDueDate.innerText =  `${toDo.dueDate}`;
+          console.log(toDo);
+          console.log();
+
+
 
           toDoElement.appendChild(toDoElementTitle);
           toDoElement.appendChild(toDoElementDueDate);
           toDoElement.appendChild(deleteToDoBtn);
           toDoElement.appendChild(editToDoBtn);
+          
 
           container.appendChild(toDoElement);
           body.appendChild(container);
@@ -197,6 +226,7 @@ const getToDo = () => {
         deleteToDoBtn.addEventListener('click', (e) => {
 
             e.target.parentElement.remove();
+            console.log(e.target.parentElement);
             //e.remove(e.parentElement);
 
         });
