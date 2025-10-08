@@ -59,30 +59,27 @@ const toDoObject = class {
 //add toDo item to array
 const toDoListArray =(() => {
 
-    const toDoListArray = [];
+    let toDoListArray = [];
 
     const addToArray = (arrayItem) => {
-        toDoListArray.push(arrayItem);
         let id = crypto.randomUUID(); // add id
         arrayItem.id = id;
+        toDoListArray.push(arrayItem);
     };
 
     //console.log(toDoListArray());
-
-    return {addToArray, toDoListArray,
-
+    const deleteId = (id) => {
+        toDoListArray = toDoListArray.filter(item => item.id !== id);
+        console.log(toDoListArray);
     }
 
+    const getArray = () => toDoListArray;
+
+    return {addToArray, toDoListArray, getArray, deleteId
+
+    };
+
 })();
-
-//To Delete From array and Dom
-
- const deleteToDo = (toDoDivId, toDoId) => {
-
-    
- };
-
-
 
 
 //const todo1 = new toDoObject("note","firstNote","tommorrow Hopefully","High","Personal");
@@ -136,8 +133,7 @@ const getToDo = () => {
     const project = document.querySelector(".project").value;
 
         const toDo = new toDoObject(title,`Description: ${description}`,date,`Priority: ${priority}`,`Project: ${project}`);
-        
-        
+           
        // const toDoSerialized = JSON.stringify(toDo); // stringify to seralize
         
        // localStorage.setItem("toDo", toDoSerialized);
@@ -189,14 +185,12 @@ const getToDo = () => {
           const toDoElementDueDate = document.createElement("p");
           
           const container = document.querySelector(".toDoDisplay");
-          const deleteToDoBtn = document.createElement("button");
-          const editToDoBtn = document.createElement("button");
+
+                const deleteToDoBtn = document.createElement("button");
+                const editToDoBtn = document.createElement("button");
          
-          
-
-          deleteToDoBtn.innerText = "Delete To Do";
-          editToDoBtn.innerText = "Edit To Do";
-
+                deleteToDoBtn.innerText = "Delete To Do";
+                editToDoBtn.innerText = "Edit To Do";
 
           const toDo = toDoToDisplay;
 
@@ -207,14 +201,11 @@ const getToDo = () => {
           console.log(toDo);
           console.log();
 
-
-
           toDoElement.appendChild(toDoElementTitle);
           toDoElement.appendChild(toDoElementDueDate);
           toDoElement.appendChild(deleteToDoBtn);
           toDoElement.appendChild(editToDoBtn);
           
-
           container.appendChild(toDoElement);
           body.appendChild(container);
 
@@ -222,15 +213,7 @@ const getToDo = () => {
         //     deleteToDo();
         //   }
 
-        //remove to do
-        deleteToDoBtn.addEventListener('click', (e) => {
-
-            e.target.parentElement.remove();
-            console.log(e.target.parentElement);
-            //e.remove(e.parentElement);
-
-        });
-
+     
         //edit the content of to do
         editToDoBtn.addEventListener('click', (e) => {
             console.log(e.target.parentElement);
@@ -242,7 +225,53 @@ const getToDo = () => {
              //});
         })
 
+           //remove to do
+        deleteToDoBtn.addEventListener('click', (e) => {
+
+            const idToDelete = e.target.parentElement.getAttribute("data-id");
+
+            e.target.parentElement.remove();
+            toDoListArray.deleteId(idToDelete);
+            console.log(e.target.parentElement);
+            //e.remove(e.parentElement);
+
+        });
+
+
  };
+
+
+
+ //To Delete From array and Dom
+
+//  const deleteToDo = () => {
+
+//           const deleteToDoBtn = document.createElement("button");
+//           const editToDoBtn = document.createElement("button");
+//           deleteToDoBtn.innerText = "Delete To Do";
+//           editToDoBtn.innerText = "Edit To Do";
+
+//           deleteBtn.forEach((button) => {
+//             button.addEventListener('click', (e)=> {
+
+//                 const divId = e.target.parentElement;
+//                 const deletedItemId = divId.id;
+//                 const existingToDoIDs = [];
+
+
+//             })
+//           });
+    
+
+//     const deletedItemId = toDoDivId.id;
+//     console.log(deletedItemId);
+//     if(toDoDivId === toDoId){
+//         remove();
+//     }
+    
+//  };
+
+//  deleteToDo();
 
  //STORE TO DO's in local STORAGE
 
