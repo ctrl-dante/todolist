@@ -3,6 +3,7 @@ import { testLog } from "./moduleTest";
 testLog();
 
 const body = document.body;
+let editingID = null;
 
 // toDo Object
 
@@ -51,6 +52,8 @@ const toDoObject = class {
 
 };
 
+
+
 //add toDo array functions
 const toDoListArray =(() => {
 
@@ -75,7 +78,7 @@ const toDoListArray =(() => {
     const deleteId = (id) => {
         toDoListArray = toDoListArray.filter(element => element.id !== id); // gets the div id and checks if it is with the item.id
         //console.log(toDoListArray);
-    }
+    };
 
     const findToDoId = (id) => {
         //find()
@@ -83,21 +86,38 @@ const toDoListArray =(() => {
         console.log(foundToDo);
         console.log(id);
         
-    }
+        return foundToDo
+    };
 
-    const updateToDo = (id, newData) => {
+    const updateToDo = (id, newToDo) => {
 
+            const toDoUpdate = findToDoId(id);
+            
+            if (toDoUpdate){
 
-    }
+            toDoUpdate.title = newToDo.title
+            toDoUpdate.description = newToDo.description
+            toDoUpdate.date = newToDo.date
+            toDoUpdate.priority = newToDo.priority
+            toDoUpdate.project = newToDo.project
+
+             }
+
+        //editedToDo.edit("longIsland","longIsland","longIsland","longIsland","longIsland",);
+
+       // console.log(getToDo().title);
+
+        //const editedToDo = getToDo();
+
+        //console.log(editedToDo.title);
+        //return editedToDo
+    };
 
     const getArray = () => toDoListArray;
 
-
-    return {addToArray, getArray, deleteId, clearArray, findToDoId //never expose directly from  encapsulated function
+    return {addToArray, getArray, deleteId, clearArray, findToDoId, updateToDo //never expose directly from  encapsulated function
 
     };
-
-   
 
 })();
 
@@ -134,10 +154,34 @@ closeBtn.addEventListener('click', () => {
 
 addBtn.addEventListener('click', () => {
 
-const newToDo = getToDo();
-toDoListArray.addToArray(newToDo);
-console.log(toDoListArray.getArray());
-displayToDo(newToDo);
+    //creatig states of add button
+
+    if(editingID !== null){
+
+    const updateData = getToDo();
+    toDoListArray.updateToDo(editingID, updateData);
+    //displayToDo();
+
+        //finding div to edit from the data attribute div
+    const toDoElement = document.querySelector(`div[data-id="${editingID}"]`);
+    const titleElement = toDoElement.querySelector("h2");
+    const dateElement = toDoElement.querySelector("p");
+
+    titleElement.innerText = updateData.title;
+    dateElement.innerText = updateData.dueDate;
+
+    }else{
+
+  const newToDo = getToDo();
+  toDoListArray.addToArray(newToDo);
+  //console.log(toDoListArray.getArray());
+  displayToDo(newToDo);
+
+}
+
+  
+  editingID = null;
+  dialog.close();
 
 });
 
@@ -152,7 +196,7 @@ const getToDo = () => {
     const priority = document.querySelector(".priority").value;
     const project = document.querySelector(".project").value;
 
-        const toDo = new toDoObject(title,`Description: ${description}`,date,`Priority: ${priority}`,`Project: ${project}`);
+        const toDo = new toDoObject(title,description,date,priority,project);
            
        // const toDoSerialized = JSON.stringify(toDo); // stringify to seralize
         
@@ -174,35 +218,34 @@ const getToDo = () => {
 
     };
 
-    const editToDo = () => {
+    // const editToDo = () => {
 
-        //find to do to edit
-        //get the information of to do to show on modal
-        //edit to do 
-        //change the dom of to do 
-        //states
+    //     //find to do to edit
+    //     //get the information of to do to show on modal
+    //     //edit to do 
+    //     //change the dom of to do 
+    //     //statee
+    //     const editedToDo = getToDo();
 
-        const editedToDo = getToDo();
+    //     editedToDo.edit("longIsland","longIsland","longIsland","longIsland","longIsland",);
 
-        editedToDo.edit("longIsland","longIsland","longIsland","longIsland","longIsland",);
-
-       // console.log(getToDo().title);
+    //    // console.log(getToDo().title);
 
 
-        // editedToDo.title = document.querySelector(".title").value
-        // editedToDo.description = document.querySelector(".description").value;
-        // editedToDo.date = document.querySelector('.date').value;
-        // editedToDo.priority = document.querySelector(".priority").value;
-        // editedToDo.project = document.querySelector(".project").value;
+    //     // editedToDo.title = document.querySelector(".title").value
+    //     // editedToDo.description = document.querySelector(".description").value;
+    //     // editedToDo.date = document.querySelector('.date').value;
+    //     // editedToDo.priority = document.querySelector(".priority").value;
+    //     // editedToDo.project = document.querySelector(".project").value;
 
-        //const editedToDo = getToDo();
+    //     //const editedToDo = getToDo();
 
-        console.log(editedToDo.title);
+    //     console.log(editedToDo.title);
 
-        //editedToDo  = toDoObject(title,`Description: ${description}`,date,`Priority: ${priority}`,`Project: ${project}`);
+    //     //editedToDo  = toDoObject(title,`Description: ${description}`,date,`Priority: ${priority}`,`Project: ${project}`);
 
-        return editedToDo
-    };
+    //     return editedToDo
+    // };
 
  const displayToDo = (toDoToDisplay) => {
 
@@ -242,14 +285,35 @@ const getToDo = () => {
      
         //edit the content of to do
         editToDoBtn.addEventListener('click', (e) => {
+
             //console.log(e.target.parentElement);
-            toDoListArray.findToDoId(e.target.parentElement);
-            dialog.showModal();
+
+            const idToEdit = e.target.parentElement.getAttribute("data-id");
+
+            editingID = idToEdit;
+
+            //find object to edit
+
+            const toDoEdit = toDoListArray.findToDoId(idToEdit);
+
+            //fill modal with edit
+
+            document.querySelector(".title").value = toDoEdit.title;
+            document.querySelector(".description").value = toDoEdit.description;
+            document.querySelector('.date').value = toDoEdit.date;
+            document.querySelector(".priority").value = toDoEdit.priority;
+            document.querySelector(".project").value = toDoEdit.project;
+
+            // toDoListArray.findToDoId(e.target.parentElement);
+            // dialog.showModal();
+            // toDoListArray.updateToDo(toDoListArray.findToDoId(), getToDo);
             //getToDo();
             //showBtn.addEventListener('click', () => {
             //editToDo();
             //console.log("show dialog")
              //});
+
+             dialog.showModal();
         })
 
            //remove to do
