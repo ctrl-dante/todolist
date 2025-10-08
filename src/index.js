@@ -4,9 +4,6 @@ testLog();
 
 const body = document.body;
 
-
-
-
 // toDo Object
 
 const toDoObject = class {
@@ -47,20 +44,27 @@ const toDoObject = class {
     isComplete(){
         //add check box if it is complete
     }
-
         //singularity says one object/function one purpose
     delete(){
         //delete to do
     }
 
-
 };
 
-//add toDo item to array
+//add toDo array functions
 const toDoListArray =(() => {
 
     let toDoListArray = [];
 
+    const clearArray = () => {
+
+        toDoListArray = [];
+        console.log("Array Cleared")
+        console.log(toDoListArray);
+
+    }
+
+   
     const addToArray = (arrayItem) => {
         let id = crypto.randomUUID(); // add id
         arrayItem.id = id;
@@ -69,15 +73,31 @@ const toDoListArray =(() => {
 
     //console.log(toDoListArray());
     const deleteId = (id) => {
-        toDoListArray = toDoListArray.filter(item => item.id !== id);
-        console.log(toDoListArray);
+        toDoListArray = toDoListArray.filter(element => element.id !== id); // gets the div id and checks if it is with the item.id
+        //console.log(toDoListArray);
+    }
+
+    const findToDoId = (id) => {
+        //find()
+        const foundToDo = toDoListArray.find((element) => element.id === id);
+        console.log(foundToDo);
+        console.log(id);
+        
+    }
+
+    const updateToDo = (id, newData) => {
+
+
     }
 
     const getArray = () => toDoListArray;
 
-    return {addToArray, toDoListArray, getArray, deleteId
+
+    return {addToArray, getArray, deleteId, clearArray, findToDoId //never expose directly from  encapsulated function
 
     };
+
+   
 
 })();
 
@@ -92,10 +112,12 @@ const closeBtn = document.querySelector(".closeModal");
 const addBtn = document.querySelector(".addToDo");
 const deleteBtn = document.querySelector(".deleteAll");
 
+//DELETE ALL
+
 deleteBtn.addEventListener('click', () => {
     const container = document.querySelector(".toDoDisplay")
     container.innerText = "";
-    toDoListArray.toDoListArray = [];
+    toDoListArray.clearArray();
     //console.log(toDoListArray.toDoListArray);
 })
 
@@ -113,10 +135,8 @@ closeBtn.addEventListener('click', () => {
 addBtn.addEventListener('click', () => {
 
 const newToDo = getToDo();
-
 toDoListArray.addToArray(newToDo);
-console.log(toDoListArray.toDoListArray);
-
+console.log(toDoListArray.getArray());
 displayToDo(newToDo);
 
 });
@@ -155,6 +175,12 @@ const getToDo = () => {
     };
 
     const editToDo = () => {
+
+        //find to do to edit
+        //get the information of to do to show on modal
+        //edit to do 
+        //change the dom of to do 
+        //states
 
         const editedToDo = getToDo();
 
@@ -216,11 +242,12 @@ const getToDo = () => {
      
         //edit the content of to do
         editToDoBtn.addEventListener('click', (e) => {
-            console.log(e.target.parentElement);
+            //console.log(e.target.parentElement);
+            toDoListArray.findToDoId(e.target.parentElement);
             dialog.showModal();
             //getToDo();
             //showBtn.addEventListener('click', () => {
-            editToDo();
+            //editToDo();
             //console.log("show dialog")
              //});
         })
