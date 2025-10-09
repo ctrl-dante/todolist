@@ -22,15 +22,6 @@ const toDoObject = class {
 
     //Not functional yet
 
-    edit(title,description,dueDate,priority,project){
-
-        this.title = title;
-        this.description = description;
-        this.dueDate = dueDate;
-        this.priority = priority;
-        this.project = project;
-    }
-
     //maybe the display should not be on the to do constructor
     displayToDoConsole(){
 
@@ -59,32 +50,51 @@ const toDoListArray =(() => {
 
     let toDoListArray = [];
 
+    const toDoStorage = localStorage.getItem("toDoStorage");
+    //console.log(toDoStorage);
+
+    if(toDoStorage){
+        const deserializedStorage = [] = JSON.parse(toDoStorage);
+        //console.log(deserializedStorage);
+        toDoListArray = deserializedStorage;
+    }
+
+     const getArray = () => toDoListArray;
+
+     const localStorageManagement = () => {
+         const arraySerialilzed = JSON.stringify(getArray());
+         localStorage.setItem("toDoStorage",arraySerialilzed);
+    };
+
     const clearArray = () => {
 
         toDoListArray = [];
-        console.log("Array Cleared")
-        console.log(toDoListArray);
+        //console.log("Array Cleared")
+        //console.log(toDoListArray);
+        localStorageManagement();
 
-    }
+    };
 
    
     const addToArray = (arrayItem) => {
         let id = crypto.randomUUID(); // add id
         arrayItem.id = id;
         toDoListArray.push(arrayItem);
+        localStorageManagement();
     };
 
     //console.log(toDoListArray());
     const deleteId = (id) => {
         toDoListArray = toDoListArray.filter(element => element.id !== id); // gets the div id and checks if it is with the item.id
         //console.log(toDoListArray);
+        localStorageManagement();
     };
 
     const findToDoId = (id) => {
         //find()
         const foundToDo = toDoListArray.find((element) => element.id === id);
-        console.log(foundToDo);
-        console.log(id);
+        //console.log(foundToDo);
+        //console.log(id);
         
         return foundToDo
     };
@@ -104,18 +114,17 @@ const toDoListArray =(() => {
              }
 
         //editedToDo.edit("longIsland","longIsland","longIsland","longIsland","longIsland",);
-
-       // console.log(getToDo().title);
-
+        // console.log(getToDo().title);
         //const editedToDo = getToDo();
-
         //console.log(editedToDo.title);
         //return editedToDo
+
     };
 
-    const getArray = () => toDoListArray;
 
-    return {addToArray, getArray, deleteId, clearArray, findToDoId, updateToDo //never expose directly from  encapsulated function
+   
+
+    return {addToArray, getArray, deleteId, clearArray, findToDoId, updateToDo, localStorageManagement //never expose directly from  encapsulated function
 
     };
 
@@ -143,14 +152,16 @@ deleteBtn.addEventListener('click', () => {
 
 showBtn.addEventListener('click', () => {
     dialog.showModal();
-    console.log("show dialog")
+    //console.log("show dialog")
 
 });
 
 closeBtn.addEventListener('click', () => {
     dialog.close();
-    console.log("closed dialog")
+    //console.log("closed dialog")
 });
+
+
 
 addBtn.addEventListener('click', () => {
 
@@ -169,25 +180,29 @@ addBtn.addEventListener('click', () => {
 
     titleElement.innerText = updateData.title;
     dateElement.innerText = updateData.dueDate;
+    toDoListArray.localStorageManagement();
 
-    }else{
+    }else {
 
   const newToDo = getToDo();
   toDoListArray.addToArray(newToDo);
   //console.log(toDoListArray.getArray());
   displayToDo(newToDo);
-
+  //adding to local storage // adds only one item
+  //localStorage.setItem(`${toDoListArray.findToDoId(newToDo)}`, JSON.stringify(newToDo));
+  //localStorage.setItem("array of objects", toDoListArray);
+        toDoListArray.localStorageManagement();
 }
 
-  
   editingID = null;
   dialog.close();
 
 });
 
-const date = new Date(); console.log(date.getMinutes());
+//const date = new Date(); console.log(date.getMinutes());
 
 //CREATE TO DO GET it From DOM
+
 const getToDo = () => {
 
     const title = document.querySelector(".title").value;
@@ -257,7 +272,6 @@ const getToDo = () => {
 
                 const deleteToDoBtn = document.createElement("button");
                 const editToDoBtn = document.createElement("button");
-         
                 deleteToDoBtn.innerText = "Delete To Do";
                 editToDoBtn.innerText = "Edit To Do";
 
@@ -267,8 +281,8 @@ const getToDo = () => {
 
           toDoElementTitle.innerText = `${toDo.title}`;
           toDoElementDueDate.innerText =  `${toDo.dueDate}`;
-          console.log(toDo);
-          console.log();
+
+          //console.log(toDo);
 
           toDoElement.appendChild(toDoElementTitle);
           toDoElement.appendChild(toDoElementDueDate);
@@ -323,13 +337,26 @@ const getToDo = () => {
 
             e.target.parentElement.remove();
             toDoListArray.deleteId(idToDelete);
-            console.log(e.target.parentElement);
+            //console.log(e.target.parentElement);
             //e.remove(e.parentElement);
 
         });
 
 
  };
+
+ const renderStorageToDom = () => {
+    const arrayToRender = toDoListArray.getArray();
+    
+    arrayToRender.forEach(element => displayToDo(element));
+
+    console.log(arrayToRender);
+ };
+
+ renderStorageToDom();
+
+ //THE END
+
 
 
 
@@ -367,9 +394,6 @@ const getToDo = () => {
  //STORE TO DO's in local STORAGE
 
  //EDIT TO DO
-
-
-
 
 // const toDoElement = document.querySelector("div");
 
