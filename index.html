@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To do list</title>
+<script defer src="main.js"></script></head>
+<body>
+
+    <div class="header">
+        <h1>DailyDo. To Do</h1>
+        <div class="headerButtons">
+            <button class="new">New to do </button>
+            <button class="deleteAll">Delete All</button>
+        </div>
+    </div>    
+
+    <!-- <select name="" id="" class="sortProjects" >
+
+        <option value="All Projects" class="allProjects" >All Projects</option>
+        <option value="Development" class="development">Development</option>
+        <option value="Design" class="design">Design</option>
+        <option value="Disk Jockey" class="diskJockey">Disk Jockey</option>
+
+    </select> -->
+
+    <dialog aria-labelledby="Add To Do">
+
+
+        <!-- <form action="" class="" method="dialog"> -->
+
+            <p>New to do! whoooo.</p>
+
+            <div class="titleAndDesc">
+            <label for="title">Title</label>
+            <input type="text" class="title" name="title">
+
+            <label for="description">Description</label>
+            <input type="text" class="description" name="description">
+            </div>
+
+            <div class="datePriorityAndProject">
+            <label for="date">Due Date</label>
+            <input type="datetime-local" class="date" name="date">
+
+            <label for="priority">Priority </label>
+             
+                <select name="priority" class="priority" id="priority">
+
+                    <option value="High" class="high">High</option>
+                    <option value="Mid" class="mid">Mid</option>
+                    <option value="Low" class="low">Low</option>
+
+                </select>
+
+            <label for="project">Project</label>
+            <input type="text" class="project" name="project">
+            </div>
+            <div class="dialogButtons">
+            <button class="addToDo">ADD</button>
+            <button class="closeModal">Close</button>
+            </div>
+
+        <!-- </form> test -->
+         
+
+    </dialog>
+
+    <container class="toDoDisplay">
+
+    </container>
+
+</body>
+</html>
