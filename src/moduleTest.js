@@ -1,1 +1,0 @@
-export const testLog = () => console.log("stracatella...");

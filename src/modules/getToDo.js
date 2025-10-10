@@ -1,8 +1,8 @@
 import { toDoObject } from "./toDoObject.js";   
-import { toDoListArray } from "./arrayIIFE.js";
-import { displayToDo } from "./displayToDo.js";
-import { body, setEditingID} from "../index.js";
-import { renderStorageToDom } from "./renderStorage.js";
+//import { toDoListArray } from "./arrayIIFE.js";
+//import { displayToDo } from "./displayToDo.js";
+//import { body, setEditingID} from "../index.js";
+//import { renderStorageToDom } from "./renderStorage.js";
 //import { editingID } from "./editingId.js";
 
 

@@ -1,9 +1,9 @@
-import { body } from "../index.js";
+//import { body } from "../index.js";
 import { getToDo } from "./getToDo.js";
-import { toDoObject } from "./toDoObject.js";   
+//import { toDoObject } from "./toDoObject.js";   
 import { toDoListArray } from "./arrayIIFE.js";
 import { displayToDo } from "./displayToDo.js";
-import { renderStorageToDom } from "./renderStorage.js";
+//import { renderStorageToDom } from "./renderStorage.js";
 import { getEditingID, setEditingID } from "./editingId.js";
 //import { editingID } from "./editingId.js";
 

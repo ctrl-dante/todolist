@@ -1,10 +1,9 @@
- import { getToDo } from "./getToDo.js";
- //import { editingID } from "./editingId.js";
-
-import { toDoListArray } from "./arrayIIFE.js";
-import { displayToDo } from "./displayToDo.js";
-import { body,editingID} from "../index.js";
-import { renderStorageToDom } from "./renderStorage.js";
+//import { getToDo } from "./getToDo.js";
+//import { editingID } from "./editingId.js";
+//import { toDoListArray } from "./arrayIIFE.js";
+//import { displayToDo } from "./displayToDo.js";
+//import { body,editingID} from "../index.js";
+//import { renderStorageToDom } from "./renderStorage.js";
 
  const toDoObject = class {
 

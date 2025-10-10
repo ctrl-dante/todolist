@@ -1,10 +1,11 @@
-import { editingID, getEditingID, setEditingID } from "./modules/editingId.js";
-import { testLog } from "./moduleTest";
-import { toDoObject } from "./modules/toDoObject.js"
-import { toDoListArray } from "./modules/arrayIIFE.js";
-import { dialog, showBtn, closeBtn, addBtn, deleteBtn } from "./modules/buttonsInterface.js";
-import { displayToDo } from "./modules/displayToDo.js";
+// import { editingID, getEditingID, setEditingID } from "./modules/editingId.js";
+// import { testLog } from "./moduleTest";
+// import { toDoObject } from "./modules/toDoObject.js"
+// import { toDoListArray } from "./modules/arrayIIFE.js";
+// import { dialog, showBtn, closeBtn, addBtn, deleteBtn } from "./modules/buttonsInterface.js";
+// import { displayToDo } from "./modules/displayToDo.js";
 import { renderStorageToDom } from "./modules/renderStorage.js";
+import "./styles.css";
 
 
 //testLog();
@@ -16,8 +17,6 @@ import { renderStorageToDom } from "./modules/renderStorage.js";
  renderStorageToDom();
 
  
-
-
 //const todo1 = new toDoObject("note","firstNote","tommorrow Hopefully","High","Personal");
 
 //console.log(todo1.displayToDo());

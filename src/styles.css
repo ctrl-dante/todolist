@@ -1,3 +1,199 @@
-body {
-  background-color: rebeccapurple;
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	/* border:0; */
+	font-size: 100%;
+	font: inherit;
+    box-sizing: border-box;
 }
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+  background-color: var(--white);
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+*{
+    borderj: rgb(0, 0, 0) dotted;
+    border-width: 0.01rem;
+    border-style: 0.7;
+}
+
+:root {
+  font-family: 'Lato', sans-serif;
+  --white: #eef7f7;
+  --tiffany-blue:#81D8D0;
+  --light-blue: #82A8D9;
+  --light-red: #D9828B;
+
+}
+
+.header {
+  padding: 2%;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-around;
+  border-bottom: var(--tiffany-blue) none 2px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  background-color: white;
+  box-shadow: inset;
+  box-shadow: 0px 0px 10px 2px rgb(0 0 0 / 10%);
+}
+
+
+h1 {
+  font-size: xx-large;
+  font-weight: bolder;
+}
+
+h2{
+  padding: 20px;
+  font-size: large;
+  font-weight: bold;
+}
+
+button{
+    padding: 10px 40px;
+    border: none;
+    border-radius: 5px;
+    margin: 2%;
+    font-weight: bold;
+    background-color: var(--light-blue);
+    color: var(--white);
+}
+
+.headerButtons{
+ display: flex;
+ width: 20%;
+
+  .new ,.deleteAll{
+  
+    padding: 10px 40px;
+    border: none;
+    border-radius: 5px;
+    margin: 2%;
+    font-weight: bold;
+    background-color: var(--light-blue);
+    color: var(--white);
+}
+
+.deleteAll{
+  background-color: #D9828B;
+}
+
+  }
+
+
+button:hover{
+    box-shadow: 2px 2px 10px 2px rgb(0 0 0 / 10%);
+    /* width: 120px; */
+}
+
+dialog[open]> form{
+    display: grid;
+    background-color: white;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(4, 1fr);
+    grid-template-areas: 
+    "title"
+    "toDoTitleAndDescription"
+    "datePriorityAndProject"
+    "buttons";
+    gap: 20px;
+    border: none;
+    border-radius: 20px;
+    padding: 20px 50px;
+    box-shadow: 0px 0px 50px 20px rgb(0 0 0 / 0.2);
+
+
+
+}
+
+     form > p{
+       grid-area: title;
+        padding: 20px;
+        font-size: large;
+        font-weight: bold;
+     }
+
+      form  >  .titleAndDesc {
+      grid-area: toDoTitleAndDescription ;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+    }
+
+    form > .datePriorityAndProject{
+      grid-area: datePriorityAndProject;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+    }
+
+    form > .dialogButtons{
+      grid-area: buttons;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+    }
+
+
+select{
+    padding: 10px 40px;
+    border: none;
+    border-radius: 5px;
+    margin: 2%;
+    font-weight: bold;
+}
+option, .high{
+  background-color: var(--light-red);
+}
+
+input{
+    border: 1px solid rgba(0, 0, 0, .2);
+    border-radius: 20px;
+    padding: 10px 20px;
+}
+
+label {
+  font-weight: bolder;
+}
+
+

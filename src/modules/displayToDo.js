@@ -1,8 +1,8 @@
-import { getToDo } from "./getToDo.js";
-import { toDoObject } from "./toDoObject.js";   
+//import { getToDo } from "./getToDo.js";
+//import { toDoObject } from "./toDoObject.js";   
 import { toDoListArray } from "./arrayIIFE.js";
-import { body} from "../index.js";
-import { renderStorageToDom } from "./renderStorage.js";
+//import { body} from "../index.js";
+//import { renderStorageToDom } from "./renderStorage.js";
 import { dialog, showBtn, closeBtn, addBtn, deleteBtn } from "./buttonsInterface.js";
 import { editingID, getEditingID, setEditingID } from "./editingId.js";
 //import { editingID } from "./editingId.js";
