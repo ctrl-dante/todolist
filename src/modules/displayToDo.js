@@ -10,6 +10,7 @@ import { editingID, getEditingID, setEditingID } from "./editingId.js";
    const displayToDo = (toDoToDisplay) => {
 
           const toDoElement = document.createElement("div");
+          toDoElement.classList.add("toDoDiv");
           const toDoElementTitle = document.createElement("h2");
           const toDoElementDueDate = document.createElement("p");
           

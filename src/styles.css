@@ -77,6 +77,21 @@ table {
   box-shadow: 0px 0px 10px 2px rgb(0 0 0 / 10%);
 }
 
+.toDoDisplay{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.toDoDiv{
+  display: block;
+  width: 30%;
+  margin: 1%;
+  padding: 1%;
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: 0px 0px 10px 2px rgb(0 0 0 / 10%);
+}
+
 
 h1 {
   font-size: xx-large;
@@ -125,8 +140,12 @@ button:hover{
     box-shadow: 2px 2px 10px 2px rgb(0 0 0 / 10%);
     /* width: 120px; */
 }
+dialog[open]{
+  border: none;
+  background-color: var(--white);
+}
 
-dialog[open]> form{
+dialog[open] {
     display: grid;
     background-color: white;
     grid-template-columns: 1fr;
@@ -141,38 +160,62 @@ dialog[open]> form{
     border-radius: 20px;
     padding: 20px 50px;
     box-shadow: 0px 0px 50px 20px rgb(0 0 0 / 0.2);
+    
+
+      p{
+       grid-area: title;
+        padding: 20px;
+        font-size: large;
+        font-weight: bold;
+
+      }
+
+
+       .titleAndDesc {
+      grid-area: toDoTitleAndDescription ;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+
+      
+    }
+
+        .datePriorityAndProject{
+      grid-area: datePriorityAndProject;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+     
+    }
+
+        .dialogButtons{
+      grid-area: buttons;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+       .closeModal{
+        background-color: var(--light-red);
+       }
+    }
+
 
 
 
 }
 
-     form > p{
-       grid-area: title;
-        padding: 20px;
-        font-size: large;
-        font-weight: bold;
-     }
+p::before{
 
-      form  >  .titleAndDesc {
-      grid-area: toDoTitleAndDescription ;
-      display: flex;
-      align-items: center;
-      justify-content: space-around;
-    }
+  content: "DueDate:";
+  padding: 5%;
+  font-weight: bolder;
+  text-decoration:underline;
+  text-decoration-color: var(--tiffany-blue);
+  text-decoration-thickness: 2px;
+ 
+}
 
-    form > .datePriorityAndProject{
-      grid-area: datePriorityAndProject;
-      display: flex;
-      align-items: center;
-      justify-content: space-around;
-    }
 
-    form > .dialogButtons{
-      grid-area: buttons;
-      display: flex;
-      align-items: center;
-      justify-content: space-around;
-    }
+
 
 
 select{
@@ -194,6 +237,7 @@ input{
 
 label {
   font-weight: bolder;
+  margin: 1%;
 }
 
 
