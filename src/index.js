@@ -1,17 +1,21 @@
+import { editingID, getEditingID, setEditingID } from "./modules/editingId.js";
 import { testLog } from "./moduleTest";
 import { toDoObject } from "./modules/toDoObject.js"
 import { toDoListArray } from "./modules/arrayIIFE.js";
 import { dialog, showBtn, closeBtn, addBtn, deleteBtn } from "./modules/buttonsInterface.js";
 import { displayToDo } from "./modules/displayToDo.js";
 import { renderStorageToDom } from "./modules/renderStorage.js";
-import { editingID } from "./modules/editingId.js";
+
 
 //testLog();
 // Index module // orchestrator of modules
 
  export const body = document.body;
- //export let editingID = null;
+
+
  renderStorageToDom();
+
+ 
 
 
 //const todo1 = new toDoObject("note","firstNote","tommorrow Hopefully","High","Personal");

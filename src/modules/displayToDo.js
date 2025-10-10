@@ -1,9 +1,11 @@
- import { getToDo } from "./getToDo.js";
+import { getToDo } from "./getToDo.js";
 import { toDoObject } from "./toDoObject.js";   
 import { toDoListArray } from "./arrayIIFE.js";
-import {body} from "../index.js";
+import { body} from "../index.js";
 import { renderStorageToDom } from "./renderStorage.js";
-import { editingID } from "./editingId.js";
+import { dialog, showBtn, closeBtn, addBtn, deleteBtn } from "./buttonsInterface.js";
+import { editingID, getEditingID, setEditingID } from "./editingId.js";
+//import { editingID } from "./editingId.js";
    
    const displayToDo = (toDoToDisplay) => {
 
@@ -39,7 +41,6 @@ import { editingID } from "./editingId.js";
         //     deleteToDo();
         //   }
 
-     
         //edit the content of to do
         editToDoBtn.addEventListener('click', (e) => {
 
@@ -47,7 +48,8 @@ import { editingID } from "./editingId.js";
 
             const idToEdit = e.target.parentElement.getAttribute("data-id");
 
-            editingID = idToEdit;
+            setEditingID(idToEdit);
+            //console.log(idToEdit);
 
             //find object to edit
 
@@ -57,7 +59,7 @@ import { editingID } from "./editingId.js";
 
             document.querySelector(".title").value = toDoEdit.title;
             document.querySelector(".description").value = toDoEdit.description;
-            document.querySelector('.date').value = toDoEdit.date;
+            document.querySelector('.date').value = toDoEdit.dueDate;
             document.querySelector(".priority").value = toDoEdit.priority;
             document.querySelector(".project").value = toDoEdit.project;
 

@@ -1,9 +1,9 @@
 import { getToDo } from "./getToDo.js";
 import { toDoObject } from "./toDoObject.js";   
 import { displayToDo } from "./displayToDo.js";
-import { body } from "../index.js";
+import { body,editingID } from "../index.js";
 import { renderStorageToDom } from "./renderStorage.js";
-import { editingID } from "./editingId.js";
+//import { editingID } from "./editingId.js";
 
 const toDoListArray =(() => {
 
@@ -63,11 +63,11 @@ const toDoListArray =(() => {
             
             if (toDoUpdate){
 
-            toDoUpdate.title = newToDo.title
-            toDoUpdate.description = newToDo.description
-            toDoUpdate.date = newToDo.date
-            toDoUpdate.priority = newToDo.priority
-            toDoUpdate.project = newToDo.project
+            toDoUpdate.title = newToDo.title;
+            toDoUpdate.description = newToDo.description;
+            toDoUpdate.dueDate = newToDo.dueDate;
+            toDoUpdate.priority = newToDo.priority;
+            toDoUpdate.project = newToDo.project;
 
              }
 

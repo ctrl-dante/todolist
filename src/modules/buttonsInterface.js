@@ -4,8 +4,10 @@ import { toDoObject } from "./toDoObject.js";
 import { toDoListArray } from "./arrayIIFE.js";
 import { displayToDo } from "./displayToDo.js";
 import { renderStorageToDom } from "./renderStorage.js";
-import { editingID } from "./editingId.js";
+import { getEditingID, setEditingID } from "./editingId.js";
+//import { editingID } from "./editingId.js";
 
+//const editingID = getEditingID();
 
 //UI buttons
 const dialog = document.querySelector("dialog");
@@ -15,7 +17,8 @@ const addBtn = document.querySelector(".addToDo");
 const deleteBtn = document.querySelector(".deleteAll");
 
 
-//button functions modules
+// button functions modules
+// maybe export as function all of this
 
 deleteBtn.addEventListener('click', () => {  //DELETE ALL
     const container = document.querySelector(".toDoDisplay")
@@ -38,15 +41,17 @@ closeBtn.addEventListener('click', () => {
 
 addBtn.addEventListener('click', () => {
     //creatig states of add button
+    const currentID = getEditingID();
 
-    if(editingID !== null){
+    if(currentID !== null){
 
     const updateData = getToDo();
-    toDoListArray.updateToDo(editingID, updateData);
+    toDoListArray.updateToDo(currentID, updateData);
     //displayToDo();
 
         //finding div to edit from the data attribute div
-    const toDoElement = document.querySelector(`div[data-id="${editingID}"]`);
+        console.log(currentID);
+    const toDoElement = document.querySelector(`div[data-id="${currentID}"]`);
     const titleElement = toDoElement.querySelector("h2");
     const dateElement = toDoElement.querySelector("p");
 
@@ -66,10 +71,11 @@ addBtn.addEventListener('click', () => {
     toDoListArray.localStorageManagement();
 }
 
-  editingID = null;
+  //editingID = null;
+  setEditingID(null);
   dialog.close();
 
 });
 
 
-export {dialog, showBtn, closeBtn, addBtn, deleteBtn };
+export {dialog, showBtn, closeBtn, addBtn, deleteBtn, };
