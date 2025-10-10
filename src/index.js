@@ -16,6 +16,11 @@ import "./styles.css";
 
  renderStorageToDom();
 
+const event = new Date("August 19, 1975 23:15:30");
+console.log(event.toTimeString());
+
+
+
  
 //const todo1 = new toDoObject("note","firstNote","tommorrow Hopefully","High","Personal");
 

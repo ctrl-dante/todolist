@@ -205,18 +205,11 @@ dialog[open] {
 
 p::before{
 
-  content: "DueDate:";
-  padding: 5%;
+  content: "Due Date: "; 
+  padding: 4%; 
   font-weight: bolder;
-  text-decoration:underline;
-  text-decoration-color: var(--tiffany-blue);
-  text-decoration-thickness: 2px;
- 
+
 }
-
-
-
-
 
 select{
     padding: 10px 40px;
