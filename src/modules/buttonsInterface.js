@@ -50,7 +50,7 @@ addBtn.addEventListener('click', () => {
     //displayToDo();
 
         //finding div to edit from the data attribute div
-        console.log(currentID);
+        //console.log(currentID);
     const toDoElement = document.querySelector(`div[data-id="${currentID}"]`);
     const titleElement = toDoElement.querySelector("h2");
     const dateElement = toDoElement.querySelector("p");

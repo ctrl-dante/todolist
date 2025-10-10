@@ -11,9 +11,9 @@
     return editingID;
  }
 
-  function setEditingID() {
-    return editingID;
+  function setEditingID(id) {
+    return editingID = id;
  }
 
- export{editingID, getEditingID, setEditingID};
+ export{getEditingID, setEditingID};
 
